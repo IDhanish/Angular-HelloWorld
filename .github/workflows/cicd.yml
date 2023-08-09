@@ -1,0 +1,49 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Jasmine Tests
+        run: npm test
+
+      - name: Setup SonarQube
+        run: |
+          # Install SonarScanner CLI (assuming you have SonarScanner already installed)
+          npm install -g sonarqube-scanner
+
+      - name: Analyze Code with SonarQube
+        run: sonar-scanner
+
+      # Add additional steps here for deployment, if needed
+      # For example, to deploy to GitHub Pages:
+
+      # - name: Build Angular Application
+      #   run: npm run build
+
+      # - name: Deploy to GitHub Pages
+      #   run: |
+      #     git config --global user.name "GitHub Actions"
+      #     git config --global user.email "actions@github.com"
+      #     ng deploy --base-href=/hello-world/
+
