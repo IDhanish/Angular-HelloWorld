@@ -22,13 +22,9 @@ module.exports = function (config) {
       colors: true,
       logLevel: config.LOG_INFO,
       autoWatch: true,
-      browsers: ['ChromeHeadlessNoSandbox'],
-      customLaunchers: {
-        ChromeHeadlessNoSandbox: {
-          base: 'ChromeHeadless',
-          flags: ['--no-sandbox']
-        }
-      },
+      captureTimeout: 60000,
+      browserNoActivityTimeout: 360000,
+      browser: ["Chrome"],
       singleRun: true, // Set this to true for CI/CD
       restartOnFileChange: true,
     });
