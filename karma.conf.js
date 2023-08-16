@@ -21,11 +21,11 @@ module.exports = function (config) {
       port: 9876,
       colors: true,
       logLevel: config.LOG_INFO,
-      autoWatch: true,
+      autoWatch: false,
       captureTimeout: 60000,
       browserNoActivityTimeout: 360000,
       browser: ['Chrome'],
-      singleRun: true, // Set this to true for CI/CD
+      singleRun: false, // Set this to true for CI/CD
       restartOnFileChange: true,
     });
   };
