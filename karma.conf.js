@@ -24,7 +24,7 @@ module.exports = function (config) {
       autoWatch: true,
       captureTimeout: 60000,
       browserNoActivityTimeout: 360000,
-      browser: ["Chrome"],
+      browser: ['Chrome'],
       singleRun: true, // Set this to true for CI/CD
       restartOnFileChange: true,
     });
