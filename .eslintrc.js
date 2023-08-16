@@ -4,22 +4,21 @@ module.exports = {
 	  browser: true,
 	  node: true,
 	},
+	extends: [
+	  'eslint:recommended',
+	  'plugin:@typescript-eslint/recommended',
+	  'plugin:angular/johnpapa', // You can choose a different Angular style guide preset
+	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 	  ecmaVersion: 2020,
 	  sourceType: 'module',
-	  project: 'tsconfig.json', // Path to your tsconfig.json file
 	},
-	plugins: ['@typescript-eslint', 'angular'],
-	extends: [
-	  'eslint:recommended',
-	  'plugin:@typescript-eslint/recommended',
-	  'plugin:angular/recommended',
-	],
+	plugins: ['@typescript-eslint', 'angular', 'html'],
 	rules: {
-	  // Add or customize rules as per your project's requirements
-	  // For example, to allow console statements in development environment:
-	  'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+	  // Customize rules based on your preferences
+	  '@typescript-eslint/explicit-module-boundary-types': 'off', // Allow implicit return types in Angular
+	  'angular/controller-as-vm': 'off', // Depends on your preferred coding style
 	},
   };
   
