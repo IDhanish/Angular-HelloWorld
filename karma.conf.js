@@ -1,24 +1,35 @@
+// karma.conf.js
 module.exports = function(config) {
   config.set({
-    browsers: ['Chrome', 'Chrome_without_security'], // You may use 'ChromeCanary', 'Chromium' or any other supported browser
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
 
-    // you can define custom flags
-    customLaunchers: {
-      Chrome_without_security: {
-        base: 'Chrome',
-        flags: ['--disable-web-security', '--disable-site-isolation-trials']
-      }
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'), // Add the Chrome launcher plugin
+      require('@angular-devkit/build-angular/plugins/karma')
+    ],
+
+    files: [
+      'src/app/app.component.spec.ts'
+    ],
+
+    proxies: {
+      '/assets/': '/base/src/assets/'
     },
-    customLaunchers: {
-      Chrome_with_debugging: {
-        base: 'Chrome',
-        chromeDataDir: path.resolve(__dirname, '.chrome')
-      }
-    }
-  })
-}
-  
-    
-      
-      
-  
+
+    preprocessors: {
+      'src/app/app.component.spec.ts': ['@angular-devkit/build-angular']
+    },
+
+    browsers: ['ChromeHeadless'], // Specify ChromeHeadless
+
+    reporters: ['progress', 'kjhtml'],
+
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    singleRun: false,
+    restartOnFileChange: true
+  });
+};
