@@ -25,7 +25,7 @@ jobs:
         run: npm run lint
 
       - name: Run Jasmine Tests
-        run: npm test
+        run: npm test -- --browsers=ChromeHeadless
 
       - name: Setup SonarQube
         run: |

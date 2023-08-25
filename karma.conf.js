@@ -1,35 +1,24 @@
-// karma.conf.js
 module.exports = function(config) {
   config.set({
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    browsers: ['Chrome', 'Chrome_without_security'], // You may use 'ChromeCanary', 'Chromium' or any other supported browser
 
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-edge-launcher'),
-      require('@angular-devkit/build-angular/plugins/karma')
-    ],
-
-    files: [
-      'src/app/app.component.spec.ts'
-    ],
-
-    proxies: {
-      '/assets/': '/base/src/assets/'
+    // you can define custom flags
+    customLaunchers: {
+      Chrome_without_security: {
+        base: 'Chrome',
+        flags: ['--disable-web-security', '--disable-site-isolation-trials']
+      }
     },
-
-    preprocessors: {
-      'src/app/app.component.spec.ts': ['@angular-devkit/build-angular']
-    },
-
-    browsers: ['Edge'],
-
-    reporters: ['progress', 'kjhtml'],
-
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    singleRun: false,
-    restartOnFileChange: true
-  });
-};
+    customLaunchers: {
+      Chrome_with_debugging: {
+        base: 'Chrome',
+        chromeDataDir: path.resolve(__dirname, '.chrome')
+      }
+    }
+  })
+}
+  
+    
+      
+      
+  
